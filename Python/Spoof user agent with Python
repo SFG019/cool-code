@@ -1,0 +1,5 @@
+import requests
+
+#Replace "User-Agent": "Mozilla/5.0 (Nintendo 3DS; U; ; en) Version/1.7412.EU" with your intended user agent.
+resource = requests.get("<example.com>", headers={"User-Agent": "Mozilla/5.0 (Nintendo 3DS; U; ; en) Version/1.7412.EU"})
+print(resource.status)
