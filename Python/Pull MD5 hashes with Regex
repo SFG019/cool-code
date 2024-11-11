@@ -1,0 +1,10 @@
+import re
+
+content = "<some content that includes hashes>"
+
+# Build a list of hashes
+hashmd5_list = re.findall("[a-fA-F0-9]{32}", str(content))
+
+# Print hashes from list
+for md5 in hashmd5_list:
+  print(md5)
