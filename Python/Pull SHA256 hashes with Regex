@@ -1,0 +1,10 @@
+import re
+
+content = "<some content that includes hashes>"
+
+# Build a list of hashes
+hashsha256_list = re.findall("[a-fA-F0-9]{64}", str(content))
+
+# Print hashes from list
+for sha256 in hashsha256_list:
+  print(sha256)
