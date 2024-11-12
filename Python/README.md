@@ -1,7 +1,7 @@
 ## Required Modules
 
 ### requests
->> pip install requests
+` pip install requests `
 
 ### re
->> pip install re
+` pip install re `
