@@ -1,7 +1,8 @@
 ## Required Modules
 
-### requests
+- requests
+- [Requests]("https://pypi.org/project/requests/")
 ` pip install requests `
 
-### re
-` pip install re `
+- re
+
