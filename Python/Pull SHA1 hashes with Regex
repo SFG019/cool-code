@@ -1,0 +1,10 @@
+import re
+
+content = "<some content that includes hashes>"
+
+# Build a list of hashes
+hashsha1_list = re.findall("[a-fA-F0-9]{40}", str(content))
+
+# Print hashes from list
+for sha1 in hashsha1_list:
+  print(sha1)
