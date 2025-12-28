@@ -1,0 +1,44 @@
+import json
+import requests
+
+class SetEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, set):
+            return list(o)
+        return super().default(o)
+
+readEvictJson = open('Evict-D3FEND-Techniques.json', 'r')
+readEvictJsonContents = readEvictJson.read()
+readEvictJsonLoads = json.loads(readEvictJsonContents)
+
+response = requests.get('https://d3fend.mitre.org/api/matrix-graph.json')
+responseJson = response.json()
+mitreMatrixGraphList = responseJson['@graph']
+
+data_techniques = readEvictJsonLoads['techniques']
+for technique in data_techniques:
+    commentSplit = technique['comment'].split('\n')
+    commentSplitFinal = list(filter(None, commentSplit))
+    technique["commentSplit"] = commentSplitFinal
+    technique["actions"] = []
+    for comment in commentSplitFinal:
+        for matrixGraph in mitreMatrixGraphList:
+            if 'rdfs:label' in matrixGraph:
+                if comment in matrixGraph['rdfs:label']:
+                    defend = {}
+                    defend["id"] = matrixGraph['d3f:d3fend-id'][0]
+                    defend["defendName"] = matrixGraph['rdfs:label'][0]
+                    defend["defendDesc"] = matrixGraph['d3f:definition'][0]
+                    defend["recoverID"] = "Pending"
+                    defend["recoverName"] = "Pending"
+                    defend["recoverDesc"] = "Pending"
+                    technique["actions"].append(defend)
+print(data_techniques)
+
+
+
+content = json.dumps(list(data_techniques), cls=SetEncoder, indent=4)
+mappedOutput = open('Evict-D3FEND-Techniques-Recover-auto.json', 'w')
+mappedOutput.write(content)
+close = mappedOutput.close()
+close_file = readEvictJson.close()
