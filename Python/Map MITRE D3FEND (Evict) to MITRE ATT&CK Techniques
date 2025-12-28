@@ -6,7 +6,7 @@ class SetEncoder(json.JSONEncoder):
         if isinstance(o, set):
             return list(o)
         return super().default(o)
-
+# Evict json file can be downloaded from this link "https://d3fend.mitre.org/tools/d3fend-extractor/?q=%5B%22d3f%3ACredentialEviction%22%2C%22d3f%3AAccountLocking%22%2C%22d3f%3AAuthenticationCacheInvalidation%22%2C%22d3f%3ACredentialRevocation%22%2C%22d3f%3AObjectEviction%22%2C%22d3f%3AEmailRemoval%22%2C%22d3f%3AFileEviction%22%2C%22d3f%3ADiskErasure%22%2C%22d3f%3ADiskPartitioning%22%2C%22d3f%3ADomainRegistrationTakedown%22%2C%22d3f%3ADiskFormatting%22%2C%22d3f%3ADNSCacheEviction%22%2C%22d3f%3ARegistryKeyDeletion%22%2C%22d3f%3AProcessEviction%22%2C%22d3f%3AProcessSuspension%22%2C%22d3f%3AHostReboot%22%2C%22d3f%3AHostShutdown%22%2C%22d3f%3ASessionTermination%22%2C%22d3f%3AProcessTermination%22%5D"
 readEvictJson = open('Evict-D3FEND-Techniques.json', 'r')
 readEvictJsonContents = readEvictJson.read()
 readEvictJsonLoads = json.loads(readEvictJsonContents)
